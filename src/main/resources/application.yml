@@ -16,6 +16,18 @@ spring:
     generate-ddl: true
   application:
     name: API-GATEWAY
+  cloud:
+    gateway:
+      routes:
+        - id: User-service
+          uri: lb://User-service
+          predicates:
+            - Path=/users/**
+        - id: hotel-service
+          uri: lb://hotel-service
+          predicates:
+            - Path=/hotels/**
+
 eureka:
   instance:
     prefer-ip-address: true
